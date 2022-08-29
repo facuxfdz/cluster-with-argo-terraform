@@ -24,9 +24,19 @@ resource "digitalocean_kubernetes_cluster" "k8s-cluster" {
     version = data.digitalocean_kubernetes_versions.current.latest_version
 
     node_pool {
-      name = "worker-pool"
+      name = "master"
       size = var.worker_size
-      node_count = var.worker_count
+      node_count = 1
     }
 }
 
+resource "digitalocean_kubernetes_node_pool" "worker-pool" {
+  cluster_id = digitalocean_kubernetes_cluster.k8s-cluster.id
+
+  name = "worker-pool"
+  size = var.worker_size
+  node_count = var.worker_count
+  labels = {
+    service = "facuxfdz-worker"
+  }
+}

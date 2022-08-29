@@ -1,9 +1,9 @@
 variable "worker_size" {
-  default = "s-1vcpu-2gb"
+  default = "s-2vcpu-4gb-intel"
 }
 
 variable "worker_count" {
-  default = 2
+  default = 1
 }
 
 variable "do_token" {
