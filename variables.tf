@@ -3,7 +3,7 @@ variable "worker_size" {
 }
 
 variable "worker_count" {
-  default = 1
+  default = 2
 }
 
 variable "do_token" {
