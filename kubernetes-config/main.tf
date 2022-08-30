@@ -11,15 +11,24 @@ terraform {
   }
 }
 
+provider "digitalocean" {
+  token = var.do_token
+}
+
 data "digitalocean_kubernetes_cluster" "k8s-cluster" {
     name = var.cluster_name
+    
     depends_on = [
-      var.cluster_id
+      var.cluster_id,
+      var.worker_node_pool_id
     ]
 }
 
-
 resource "local_file" "kubeconfig" {
+    depends_on = [
+      var.cluster_id,
+      var.worker_node_pool_id
+    ]
     content = data.digitalocean_kubernetes_cluster.k8s-cluster.kube_config[0].raw_config
     filename = "kubeconfig.yaml"
 }
