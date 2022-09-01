@@ -26,7 +26,7 @@ module "my-cluster" {
   source = "./cluster"
   cluster_name = "facuxfdz-cluster"
   cluster_region = "nyc1"
-  cluster_version = "1.23.9-do.0"
+  cluster_version = "1.23.10-do.0"
 
   worker_size = var.worker_size
   worker_count = var.worker_count

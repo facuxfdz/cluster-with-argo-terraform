@@ -32,7 +32,8 @@ data "digitalocean_kubernetes_versions" "current" {
 resource "digitalocean_kubernetes_cluster" "k8s-cluster" {
     name = var.cluster_name
     region = var.cluster_region
-    version = data.digitalocean_kubernetes_versions.current.latest_version
+    # version = "1.23.9-do.0"
+    version = data.digitalocean_kubernetes_versions.current.version_prefix
 
     node_pool {
       name = "master"
